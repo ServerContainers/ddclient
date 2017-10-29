@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+
+  ddclient:
+    build: .
+    image: servercontainers/ddclient
+    restart: always
+    volumes:
+      - './ddclient.conf:/etc/ddclient.conf:ro'
+    networks:
+      - ddclient
+
+networks:
+  ddclient:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
